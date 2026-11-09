@@ -9,6 +9,7 @@
 		"build": "tsx scripts/generate-seo.ts && react-router build && node scripts/postbuild.mjs",
 		"start": "vite preview --outDir build/client",
 		"typecheck": "react-router typegen && tsc",
+		"test": "tsx --test src/lib/*.test.ts",
 		"lint": "biome check",
 		"lint:fix": "biome check --write"
 	},

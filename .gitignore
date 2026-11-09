@@ -10,7 +10,11 @@ coverage/
 *.swp
 *.bak
 *.old
-.next/
+build/
+.react-router/
+public/robots.txt
+public/sitemap.xml
+public/llms.txt
 *.tsbuildinfo
 npm-debug.log*
 .next_stale*
@@ -19,7 +23,7 @@ test-results/
 !AGENTS.md
 .direnv
 .pnpm-store
-.vercel
 .claude/
 .agents/skills/
 .env*
+TO_DO.md

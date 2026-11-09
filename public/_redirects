@@ -1,0 +1,5 @@
+# Single source of truth: the Vite dev server reads this file too.
+/home / 301
+/resume /docs/Harshal_Sawant_Resume.pdf 302
+/blog /posts 301
+/blog/:slug /posts/:slug 301

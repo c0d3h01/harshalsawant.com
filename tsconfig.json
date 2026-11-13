@@ -24,8 +24,7 @@
 		"src/**/*.tsx",
 		".react-router/types/**/*",
 		"react-router.config.ts",
-		"vite.config.ts",
-		"scripts/**/*.ts"
+		"vite.config.ts"
 	],
 	"exclude": ["node_modules", "build"]
 }

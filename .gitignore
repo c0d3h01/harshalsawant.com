@@ -12,6 +12,8 @@ coverage/
 *.old
 build/
 .react-router/
+.wrangler/
+.playwright-cli/
 *.tsbuildinfo
 npm-debug.log*
 .next_stale*

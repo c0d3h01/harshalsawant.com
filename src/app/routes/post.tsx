@@ -1,6 +1,12 @@
 import { postBodies } from "virtual:post-bodies";
 import { posts } from "virtual:posts";
-import { isRouteErrorResponse, useParams, useRouteError } from "react-router";
+import { ArrowLeft } from "lucide-react";
+import {
+	isRouteErrorResponse,
+	Link,
+	useParams,
+	useRouteError,
+} from "react-router";
 import JsonLd from "@/components/JsonLd";
 import NotFoundBlock from "@/components/NotFoundBlock";
 import { defaultOgImage, profile, siteUrl } from "@/content";
@@ -39,7 +45,7 @@ const PostPage = () => {
 	if (!post) {
 		return (
 			<NotFoundBlock
-				title="Post not found"
+				title="Post not found."
 				message="This post doesn't exist or may have been moved."
 				href="/posts"
 				linkLabel="View all posts"
@@ -80,25 +86,44 @@ const PostPage = () => {
 	};
 
 	return (
-		<article className="content-rail flex flex-col gap-4">
+		<div className="container-page pb-20 pt-8 sm:pb-24 sm:pt-10">
 			<JsonLd data={blogPostingJsonLd} />
 			<JsonLd data={breadcrumbJsonLd} />
 
-			<p className="mono-label tnum">
-				By {profile.name} ·{" "}
-				<time dateTime={post.date}>{formatDate(post.date, "long")}</time>
-			</p>
+			<Link to="/posts" className="section-link">
+				<ArrowLeft aria-hidden="true" />
+				All writing
+			</Link>
 
-			<h1 className="wrap-break-word text-2xl font-bold text-(--gb-fg0)">
-				{post.title}
-			</h1>
-			<p className="wrap-break-word text-(--gb-fg2)">{post.description}</p>
+			<article className="mt-8">
+				<p className="eyebrow">
+					Writing ·{" "}
+					<time dateTime={post.date}>{formatDate(post.date, "long")}</time>
+				</p>
 
-			<div
-				className="post-prose flex flex-col gap-4"
-				dangerouslySetInnerHTML={{ __html: postBodies[post.slug] ?? "" }}
-			/>
-		</article>
+				<h1 className="mt-4 max-w-4xl font-display text-[clamp(2.2rem,5.5vw,3.8rem)] font-semibold leading-[1.02] tracking-[-0.045em] text-ink">
+					{post.title}
+				</h1>
+
+				<p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
+					{post.description}
+				</p>
+
+				<div className="my-10 h-px bg-line" />
+
+				<div
+					className="post-prose"
+					dangerouslySetInnerHTML={{ __html: postBodies[post.slug] ?? "" }}
+				/>
+			</article>
+
+			<div className="mt-14 border-t border-line pt-6">
+				<Link to="/posts" className="section-link">
+					<ArrowLeft aria-hidden="true" />
+					Back to all writing
+				</Link>
+			</div>
+		</div>
 	);
 };
 
@@ -112,7 +137,7 @@ export const ErrorBoundary = () => {
 
 	return (
 		<NotFoundBlock
-			title="Something went wrong"
+			title="Something went wrong."
 			message={message}
 			href="/posts"
 			linkLabel="View all posts"

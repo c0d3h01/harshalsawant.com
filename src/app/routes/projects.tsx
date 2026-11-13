@@ -1,10 +1,10 @@
+import PageHeader from "@/components/PageHeader";
 import ProjectList from "@/components/ProjectList";
-import SectionHeading from "@/components/SectionHeading";
 import { projects } from "@/content";
 import { seoMeta } from "@/lib/seo";
 
 const description =
-	"Backend systems, distributed services, and tools I've built in Go. See what each project does, how I built it, and the code behind it.";
+	"Backend systems, distributed services, and tools I've built in Go, Rust, and C++. See what each project does, how I built it, and the code behind it.";
 
 export const meta = () =>
 	seoMeta({
@@ -14,13 +14,14 @@ export const meta = () =>
 	});
 
 const ProjectsPage = () => (
-	<section className="flex flex-col gap-4">
-		<div className="flex items-center justify-between gap-2">
-			<SectionHeading title="Projects" as="h1" />
-		</div>
-
+	<div className="container-page pb-20 sm:pb-24">
+		<PageHeader
+			eyebrow="Work"
+			title="Selected work."
+			description={description}
+		/>
 		<ProjectList items={projects} />
-	</section>
+	</div>
 );
 
 export default ProjectsPage;

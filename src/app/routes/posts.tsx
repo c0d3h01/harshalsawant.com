@@ -1,6 +1,6 @@
 import { posts } from "virtual:posts";
+import PageHeader from "@/components/PageHeader";
 import PostList from "@/components/PostList";
-import SectionHeading from "@/components/SectionHeading";
 import { seoMeta } from "@/lib/seo";
 
 const description =
@@ -14,17 +14,19 @@ export const meta = () =>
 	});
 
 const PostsPage = () => (
-	<section className="flex flex-col gap-4">
-		<div className="flex items-center justify-between gap-2">
-			<SectionHeading title="Posts" as="h1" />
-		</div>
+	<div className="container-page pb-20 sm:pb-24">
+		<PageHeader
+			eyebrow="Writing"
+			title="Notes from the backend."
+			description={description}
+		/>
 
 		{posts.length === 0 ? (
-			<div className="text-(--gb-fg2)">No posts published yet.</div>
+			<p className="text-muted">No posts published yet.</p>
 		) : (
 			<PostList posts={posts} />
 		)}
-	</section>
+	</div>
 );
 
 export default PostsPage;

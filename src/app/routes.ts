@@ -16,6 +16,6 @@ export default [
 		route("projects/:slug", "routes/project.tsx"),
 		route("posts", "routes/posts.tsx"),
 		route("posts/:slug", "routes/post.tsx"),
+		route("*", "routes/not-found.tsx"),
 	]),
-	route("*", "routes/not-found.tsx"),
 ] satisfies RouteConfig;

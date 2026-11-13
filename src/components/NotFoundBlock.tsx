@@ -13,13 +13,13 @@ const NotFoundBlock = ({
 	href,
 	linkLabel,
 }: NotFoundBlockProps) => (
-	<div className="flex flex-col gap-3 py-12">
-		<h1 className="text-xl font-medium text-(--gb-fg0)">{title}</h1>
-		<p className="text-sm text-(--gb-fg2)">{message}</p>
-		<Link
-			to={href}
-			className="text-(--accent) text-sm underline underline-offset-4"
-		>
+	<div className="container-page flex min-h-[60svh] flex-col justify-center py-16">
+		<p className="eyebrow">Not found</p>
+		<h1 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+			{title}
+		</h1>
+		<p className="mt-3 max-w-md text-muted">{message}</p>
+		<Link to={href} className="btn btn-secondary mt-6 w-fit">
 			{linkLabel}
 		</Link>
 	</div>

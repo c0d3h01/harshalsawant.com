@@ -1,5 +1,6 @@
 import ExperienceList from "@/components/ExperienceList";
-import SectionHeading from "@/components/SectionHeading";
+import PageHeader from "@/components/PageHeader";
+import Toolkit from "@/components/Toolkit";
 import { experiences } from "@/content";
 import { seoMeta } from "@/lib/seo";
 
@@ -14,13 +15,22 @@ export const meta = () =>
 	});
 
 const ExperiencePage = () => (
-	<section className="flex flex-col gap-4">
-		<div className="flex items-center justify-between gap-2">
-			<SectionHeading title="Experience" as="h1" />
-		</div>
+	<div className="container-page pb-20 sm:pb-24">
+		<PageHeader
+			eyebrow="Experience"
+			title="A short history."
+			description={description}
+		/>
 
-		<ExperienceList items={experiences} />
-	</section>
+		<div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+			<div className="lg:col-span-7">
+				<ExperienceList items={experiences} />
+			</div>
+			<div className="lg:col-span-5">
+				<Toolkit />
+			</div>
+		</div>
+	</div>
 );
 
 export default ExperiencePage;

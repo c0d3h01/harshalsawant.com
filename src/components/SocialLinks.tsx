@@ -5,7 +5,6 @@ import {
 	FaLinkedinIn,
 	FaXTwitter,
 } from "react-icons/fa6";
-import ButtonLink from "@/components/ButtonLink";
 import { profile, type SocialLink } from "@/content";
 
 const socialLinks: SocialLink[] = [
@@ -37,24 +36,23 @@ const socialLinks: SocialLink[] = [
 ];
 
 const SocialLinks = () => (
-	<nav
-		aria-label="Social links"
-		className="flex flex-wrap justify-center gap-3 pt-1 sm:justify-start"
-	>
-		{socialLinks.map(({ name, href, icon: Icon }) => (
-			<ButtonLink
-				key={name}
-				ariaLabel={name}
-				href={href}
-				target={href.startsWith("http") ? "_blank" : "_self"}
-				className="social-link relative overflow-visible px-2 py-1.5"
-			>
-				<Icon className="social-link-icon size-4 shrink-0" />
-				<span className="social-link-tag" aria-hidden="true">
-					{name}
-				</span>
-			</ButtonLink>
-		))}
+	<nav aria-label="Social links" className="flex flex-wrap gap-2">
+		{socialLinks.map(({ name, href, icon: Icon }) => {
+			const external = href.startsWith("http");
+
+			return (
+				<a
+					key={name}
+					href={href}
+					aria-label={name}
+					target={external ? "_blank" : undefined}
+					rel={external ? "noopener noreferrer" : undefined}
+					className="social-icon"
+				>
+					<Icon aria-hidden="true" />
+				</a>
+			);
+		})}
 	</nav>
 );
 

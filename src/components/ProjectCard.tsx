@@ -1,10 +1,12 @@
 import { ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
 import { Link } from "react-router";
+import ProjectCover from "@/components/ProjectCover";
 import type { ProjectStatus } from "@/content";
 
 interface ProjectCardProps {
 	slug: string;
+	index: number;
 	title: string;
 	status: ProjectStatus;
 	description: string;
@@ -18,12 +20,13 @@ const statusMeta: Record<
 	{ label: string; dotClassName: string }
 > = {
 	active: { label: "Active", dotClassName: "bg-emerald-500" },
-	building: { label: "Building", dotClassName: "bg-(--accent)" },
-	archived: { label: "Archived", dotClassName: "bg-(--gb-fg2)" },
+	building: { label: "Building", dotClassName: "bg-accent" },
+	archived: { label: "Archived", dotClassName: "bg-muted" },
 };
 
 const ProjectCard = ({
 	slug,
+	index,
 	title,
 	status,
 	description,
@@ -34,19 +37,14 @@ const ProjectCard = ({
 	const statusInfo = statusMeta[status];
 
 	return (
-		<article className="project-card relative rounded-xl">
-			<Link
-				to={`/projects/${slug}`}
-				aria-label={`Open project details for ${title}`}
-				className="absolute inset-0 z-20 rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--accent)"
-			/>
+		<article className="work-card">
+			<div className="p-2 pb-0">
+				<ProjectCover slug={slug} index={index} />
+			</div>
 
-			<div className="flex flex-col gap-1.5 p-3.5">
-				<div className="flex items-center justify-between">
-					<div className="flex min-w-0 items-center gap-2.5">
-						<h2 className="truncate text-lg font-semibold text-(--gb-fg0) sm:text-xl md:text-2xl">
-							{title}
-						</h2>
+			<div className="flex flex-1 flex-col gap-3 p-4 sm:p-5">
+				<div className="flex items-start justify-between gap-3">
+					<div className="min-w-0">
 						<span className="status-tag">
 							<span
 								aria-hidden="true"
@@ -54,18 +52,27 @@ const ProjectCard = ({
 							/>
 							{statusInfo.label}
 						</span>
+						<h3 className="work-card-title mt-2">
+							<Link
+								to={`/projects/${slug}`}
+								aria-label={`Open project details for ${title}`}
+								className="focus-visible:outline-none"
+							>
+								{title}
+							</Link>
+						</h3>
 					</div>
 
-					<div className="relative z-30 flex select-none gap-1 px-1 text-base sm:gap-2 sm:px-2">
+					<div className="work-card-actions flex shrink-0 gap-1.5">
 						{liveUrl && (
 							<a
 								href={liveUrl}
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label={`Open live project: ${title}`}
-								className="project-card-action"
+								className="work-card-action"
 							>
-								<ExternalLink />
+								<ExternalLink aria-hidden="true" />
 							</a>
 						)}
 
@@ -75,23 +82,21 @@ const ProjectCard = ({
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label={`Open GitHub repository for ${title}`}
-								className="project-card-action"
+								className="work-card-action"
 							>
-								<FaGithub />
+								<FaGithub aria-hidden="true" />
 							</a>
 						)}
 					</div>
 				</div>
 
-				<p className="text-(--gb-fg1)">{description}</p>
-			</div>
+				<p className="text-sm leading-relaxed text-muted">{description}</p>
 
-			<div className="mt-1 border-t border-(--gb-border) px-3.5 py-2.5">
-				<ul className="flex select-none flex-wrap gap-1.5">
+				<ul className="mt-auto flex flex-wrap gap-1.5 pt-1">
 					{skills.map((skill) => (
 						<li
 							key={skill}
-							className="mono-label rounded-md border border-(--gb-border) px-2 py-1"
+							className="mono-label rounded border border-line px-2 py-1 text-[0.58rem]"
 						>
 							{skill}
 						</li>

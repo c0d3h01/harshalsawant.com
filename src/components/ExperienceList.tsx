@@ -5,30 +5,37 @@ interface ExperienceListProps {
 }
 
 const ExperienceList = ({ items }: ExperienceListProps) => (
-	<div className="section-copy flex flex-col gap-3">
+	<div className="flex flex-col gap-9">
 		{items.map(
 			({ role, company, duration, location, isCurrent, highlights }) => (
-				<article
-					key={`${role}·${company}`}
-					className="experience-card relative rounded-xl border border-(--gb-border) bg-(--gb-surface) p-4 pl-5 before:absolute before:inset-y-4 before:left-0 before:w-0.75 before:rounded-full before:bg-(--accent) before:opacity-80 hover:ring-1 hover:ring-(--accent)"
-				>
-					<div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-						<h3 className="min-w-0 text-[1.02rem] font-semibold text-(--gb-fg0)">
+				<article key={`${role}·${company}`} className="timeline">
+					<div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+						<h3 className="text-lg font-semibold tracking-tight text-ink">
 							{role} · {company}
 						</h3>
-						<p className="mono-label tnum whitespace-nowrap">
-							{duration}
-							{isCurrent && <span className="text-(--accent)"> · active</span>}
-						</p>
+						{isCurrent && (
+							<span className="status-tag">
+								<span
+									aria-hidden="true"
+									className="status-tag-dot bg-emerald-500"
+								/>
+								Current
+							</span>
+						)}
 					</div>
-					<p className="text-sm text-(--gb-fg2)">{location}</p>
-					<ul className="mt-2.5 flex flex-col gap-1.5 text-[0.95rem] text-(--gb-fg1)">
+
+					<p className="mt-1.5 text-sm text-muted">
+						{location} · <span className="mono-label tnum">{duration}</span>
+					</p>
+
+					<ul className="mt-4 flex flex-col gap-2 text-[0.95rem] leading-relaxed text-ink-soft">
 						{highlights.map((highlight) => (
-							<li
-								key={highlight}
-								className="flex gap-2 before:mt-2.5 before:size-1 before:shrink-0 before:rounded-full before:bg-(--gb-fg2)"
-							>
-								{highlight}
+							<li key={highlight} className="flex gap-2.5">
+								<span
+									aria-hidden="true"
+									className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent"
+								/>
+								<span>{highlight}</span>
 							</li>
 						))}
 					</ul>

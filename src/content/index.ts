@@ -61,11 +61,6 @@ export interface Project {
 	liveUrl: string;
 	githubUrl: string;
 	techStack: string[];
-	banner: {
-		src: string;
-		width: number;
-		height: number;
-	};
 }
 
 export const projects: Project[] = [
@@ -83,11 +78,6 @@ export const projects: Project[] = [
 		liveUrl: "",
 		githubUrl: "https://github.com/harusharu/harustream",
 		techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui"],
-		banner: {
-			src: "/images/banners/projects.gif",
-			width: 500,
-			height: 333,
-		},
 	},
 	{
 		slug: "termchat",
@@ -103,11 +93,6 @@ export const projects: Project[] = [
 		liveUrl: "",
 		githubUrl: "https://github.com/harusharu/termchat",
 		techStack: ["Rust", "Tokio", "Ratatui"],
-		banner: {
-			src: "/images/banners/projects.gif",
-			width: 500,
-			height: 333,
-		},
 	},
 	{
 		slug: "androidtweaker",
@@ -123,11 +108,6 @@ export const projects: Project[] = [
 		liveUrl: "",
 		githubUrl: "https://github.com/c0d3h01/androidtweaker",
 		techStack: ["Shell scripts", "Android kernel", "Performance Tuning"],
-		banner: {
-			src: "/images/banners/projects.gif",
-			width: 500,
-			height: 333,
-		},
 	},
 	{
 		slug: "coretaskoptimizer",
@@ -148,11 +128,6 @@ export const projects: Project[] = [
 			"Kernel Optimization",
 			"CPU task priotizer",
 		],
-		banner: {
-			src: "/images/banners/projects.gif",
-			width: 500,
-			height: 333,
-		},
 	},
 ];
 

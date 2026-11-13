@@ -1,18 +1,19 @@
 import ProjectList from "@/components/ProjectList";
-import SectionHeading from "@/components/SectionHeading";
-import ViewAllLink from "@/components/ViewAllLink";
+import SectionHeader from "@/components/SectionHeader";
 import { projects } from "@/content";
 
-const ProjectsSection = () => {
-	return (
-		<section id="projects" className="section-fluid flex flex-col gap-3">
-			<SectionHeading title="Projects" />
+const ProjectsSection = () => (
+	<section id="work" className="section">
+		<div className="container-page">
+			<SectionHeader
+				index="01 — Selected work"
+				title="Systems I've shipped."
+				description="Backend services, developer tools, and low-level experiments — each one built to solve a problem I ran into myself."
+				action={{ href: "/projects", label: "All projects" }}
+			/>
 			<ProjectList items={projects} limit={2} />
-			{projects.length > 2 && (
-				<ViewAllLink href="/projects" label="View all projects" />
-			)}
-		</section>
-	);
-};
+		</div>
+	</section>
+);
 
 export default ProjectsSection;

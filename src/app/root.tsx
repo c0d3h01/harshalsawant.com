@@ -8,7 +8,6 @@ import {
 	ScrollRestoration,
 	useRouteError,
 } from "react-router";
-import FloatingDock from "@/components/FloatingDock";
 import JsonLd from "@/components/JsonLd";
 import { profile, profileAvatarUrl, siteUrl } from "@/content";
 import { absoluteUrl, seoMeta } from "@/lib/seo";
@@ -70,23 +69,21 @@ const Root = () => (
 	<html lang="en" suppressHydrationWarning>
 		<head>
 			<meta charSet="utf-8" />
-			<meta name="viewport" content="width=device-width, initial-scale=1" />
+			<meta
+				name="viewport"
+				content="width=device-width, initial-scale=1, viewport-fit=cover"
+			/>
+			<meta name="color-scheme" content="light dark" />
 			<link rel="icon" href="/favicon.ico" sizes="any" />
 			<meta
 				name="theme-color"
 				media="(prefers-color-scheme: light)"
-				content="#fdfbf8"
+				content="#f7f3ec"
 			/>
 			<meta
 				name="theme-color"
 				media="(prefers-color-scheme: dark)"
-				content="#14110f"
-			/>
-			<link rel="preconnect" href="https://x.com" crossOrigin="anonymous" />
-			<link
-				rel="preconnect"
-				href="https://www.linkedin.com"
-				crossOrigin="anonymous"
+				content="#12100e"
 			/>
 			<link
 				rel="preload"
@@ -102,13 +99,19 @@ const Root = () => (
 				type="font/woff2"
 				crossOrigin="anonymous"
 			/>
+			<link
+				rel="preload"
+				href={profileAvatarUrl}
+				as="image"
+				fetchPriority="high"
+			/>
 			<JsonLd data={personJsonLd} />
 			<JsonLd data={websiteJsonLd} />
 			<JsonLd data={organizationJsonLd} />
 			<Meta />
 			<Links />
 		</head>
-		<body className="antialiased">
+		<body>
 			<ThemeProvider
 				attribute="class"
 				defaultTheme="system"
@@ -116,7 +119,6 @@ const Root = () => (
 				disableTransitionOnChange
 			>
 				<div aria-hidden="true" className="grain-overlay" />
-				<FloatingDock />
 				<Outlet />
 			</ThemeProvider>
 			<ScrollRestoration />
@@ -135,15 +137,12 @@ export const ErrorBoundary = () => {
 
 	return (
 		<div className="flex min-h-dvh flex-col items-center justify-center gap-4 px-6 text-center">
-			<p className="mono-label text-(--accent)">Error</p>
-			<h1 className="text-2xl font-semibold text-(--gb-fg0)">
+			<p className="eyebrow text-accent">Error</p>
+			<h1 className="font-display text-3xl font-semibold tracking-tight text-ink">
 				Something went wrong
 			</h1>
-			<p className="text-(--gb-fg2)">{message}</p>
-			<a
-				href="/"
-				className="text-(--accent) text-sm underline underline-offset-4"
-			>
+			<p className="max-w-md text-muted">{message}</p>
+			<a href="/" className="btn btn-primary mt-2">
 				Go home
 			</a>
 		</div>

@@ -1,10 +1,9 @@
 import AboutSection from "@/components/AboutSection";
+import ContactSection from "@/components/ContactSection";
 import ExperienceSection from "@/components/ExperienceSection";
-import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
 import PostsSection from "@/components/PostsSection";
-import ProfileHeader from "@/components/ProfileHeader";
 import ProjectsSection from "@/components/ProjectsSection";
-import { profile, profileAvatarUrl } from "@/content";
 import { seoMeta } from "@/lib/seo";
 
 const description =
@@ -19,20 +18,14 @@ export const meta = () =>
 	});
 
 const HomeRoute = () => (
-	<div className="section-stack flex flex-col gap-4">
-		<div className="section-profile">
-			<ProfileHeader
-				userName={profile.name}
-				userBio={profile.bio}
-				userImage={profileAvatarUrl}
-			/>
-		</div>
-		<AboutSection />
-		<ExperienceSection />
+	<>
+		<Hero />
 		<ProjectsSection />
+		<ExperienceSection />
 		<PostsSection />
-		<Footer />
-	</div>
+		<AboutSection />
+		<ContactSection />
+	</>
 );
 
 export default HomeRoute;

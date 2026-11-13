@@ -1,11 +1,20 @@
 import { Outlet } from "react-router";
+import MobileDock from "@/components/MobileDock";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 
 const SiteLayout = () => (
-	<div className="mx-auto max-w-3xl px-4 pt-10 pb-28 sm:px-6 sm:pt-14 sm:pb-32 md:pt-20 md:pb-36">
-		<main>
+	<>
+		<a href="#main" className="skip-link">
+			Skip to content
+		</a>
+		<SiteHeader />
+		<main id="main" tabIndex={-1}>
 			<Outlet />
 		</main>
-	</div>
+		<SiteFooter />
+		<MobileDock />
+	</>
 );
 
 export default SiteLayout;

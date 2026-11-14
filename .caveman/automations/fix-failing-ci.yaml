@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://caveman.so/schemas/automation-v1.json
+version: 1
+description: When CI fails on master, find the cause and open a reviewed draft fix
+
+on:
+  github:
+    event: workflow_run.completed
+    conclusion: failure
+    branches: [master]
+
+budget: $4
+
+steps:
+  diagnose:
+    agent: ci-triage
+    model: fast
+  fix:
+    if: { diagnose: fix }
+    agent: builder
+    model: base
+    escalate: frontier
+    computer: full
+    checks:
+      - pnpm install --frozen-lockfile
+      - pnpm typecheck && pnpm lint && pnpm test
+      - pnpm build && pnpm smoke
+      - pnpm exec wrangler deploy --dry-run
+      - agent: reviewer
+    retries: 1
+
+outputs:
+  github.pull_request: { from: fix, draft: true }
